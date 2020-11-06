@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  
   root to: 'home#top'
+
+  devise_for :users
+
+  resources :users do
+    member do
+      get :followings
+      get :followers
+    end
+  end
+
+  resources :relationships, only: [:create, :destroy]
 end

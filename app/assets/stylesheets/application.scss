@@ -14,41 +14,35 @@
  *= require_self
  */
 
- body {
+body {
   padding-top: 100px;
   color: #555555;
- }
+}
 
- .notification:not(:last-child){
-    margin-bottom: 0;
-  }
+// navbar
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10000;
+}
 
-  
-  // navbar
-  header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 10000;
-  }
+nav {
+  box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.4);
+  background-color: white;
+}
 
-  nav {
-    box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.4);
-    background-color: white;
-  }
+.navbar-brand {
+  font-weight: bold;
+  font-size: 28px;
+}
 
-  .navbar-brand {
-    font-weight: bold;
-    font-size: 28px;
-  }
+.navbar-light .navbar-nav .nav-link{
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+}
 
-  .navbar-light .navbar-nav .nav-link{
-    font-weight: 700;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-
-  .navbar-light .navbar-nav .nav-item{
-    margin: 0 15px;
-  }
-  
+.navbar-light .navbar-nav .nav-item{
+  margin: 0 15px;
+}
