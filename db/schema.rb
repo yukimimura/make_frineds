@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_135312) do
+ActiveRecord::Schema.define(version: 2020_11_06_175253) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(version: 2020_11_06_135312) do
     t.string "sex"
     t.string "language"
     t.string "image"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

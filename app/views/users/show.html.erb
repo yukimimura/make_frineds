@@ -1,2 +1,7 @@
-<%= @user.name %>
+<%= @user.name %><br>
+<%= @user.sign_in_count %><br>
+<%= @user.current_sign_in_at.strftime("%Y-%m-%d %H:%M") %><br>
+<%= @user.last_sign_in_at.strftime("%Y-%m-%d %H:%M") %><br>
+<%= @user.current_sign_in_ip %><br>
+<%= @user.last_sign_in_ip %><br>
 <%= render 'relationships/follow_button', user: @user %>

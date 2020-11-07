@@ -1,0 +1,13 @@
+<% if current_user.language == 'english' %>
+  <% @japanese.each do |j| %>
+    <ul>
+      <li>ユーザー名：<%= j.name %></li>
+    </ul>
+  <% end %>
+<% else %>
+  <% @english.each do |e| %>
+    <ul>
+      <li>ユーザー名：<%= e.name %></li>
+    </ul>
+  <% end %>
+<% end %>
