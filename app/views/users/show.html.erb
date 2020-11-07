@@ -5,3 +5,28 @@
 <%= @user.current_sign_in_ip %><br>
 <%= @user.last_sign_in_ip %><br>
 <%= render 'relationships/follow_button', user: @user %>
+
+<% unless @user == current_user %>
+  <% if @isRoom == true %>
+    <button class="button is-rounded">
+      <%= link_to room_path(@roomId) do %>
+        <span class="icon">
+          <i class="far fa-envelope"></i>
+        </span>
+        <span class="has-text-weight-bold">メッセージ</span>
+      <% end %>
+    </button>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, value: @user.id %>
+      <% end %>
+      <%= button_tag(type: 'submit', class: 'button is-rounded') do %>
+        <span class="icon">
+          <i class="far fa-envelope"></i>
+        </span>
+        <span class="has-text-weight-bold">メッセージ</span>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

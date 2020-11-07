@@ -1,0 +1,25 @@
+<p class="is-size-3 has-text-weight-bold has-text-centered mb-5">メッセージ</p>
+<br>
+
+<% @anotherEntries.each do |e| %>
+  <p class="is-size-5 has-text-weight-bold"><%= link_to e.user.name, room_path(e.room.id) %></p>
+  <%= link_to room_path(e.room.id) do %>
+    <p>トークルームへ >></p>
+  <% end %>
+<% end %>
+
+<% if @anotherEntries.empty? %>
+  <p class="mb-5 has-text-centered">
+    トーク履歴がありません。<br>
+    他ユーザーのプロフィールからメッセージを送りましょう。
+  </p>
+  <br>
+  <% @users.each do |user| %>
+    <% unless user == current_user %> 
+      <p class="is-size-5 has-text-weight-bold"><%= link_to user.name, user_path(user.id) %></p>
+      <%= link_to user_path(user.id) do %>
+        <p>プロフィールへ >></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

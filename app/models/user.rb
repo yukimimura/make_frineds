@@ -35,4 +35,8 @@ class User < ApplicationRecord
 
   # post
   has_many :posts, dependent: :destroy
+
+  #DM機能
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 end
