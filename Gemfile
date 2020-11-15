@@ -57,3 +57,7 @@ gem 'devise'
 gem 'rails_admin', '~> 2.0.0.beta'
 gem 'carrierwave'
 gem 'pry-rails'
+
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end
