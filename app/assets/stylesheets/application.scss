@@ -15,7 +15,11 @@
  */
 
 body {
-  padding-top: 100px;
+  padding-top: 70px;
+  color: #555555;
+}
+
+a {
   color: #555555;
 }
 
@@ -45,4 +49,46 @@ nav {
 
 .navbar-light .navbar-nav .nav-item{
   margin: 0 15px;
+}
+
+// メッセージ一覧
+#message-container {
+  padding: 1rem 1rem 8rem 1rem;
+}
+
+// _footer
+// メッセージ投稿フォーム
+footer {
+  border: solid #EEEEEE;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: white;
+}
+
+// ボタン無効化時のスタイル
+.btn-primary.disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  cursor: auto;
+}
+
+// rooms/show
+#main {
+  border: solid #EEEEEE;
+}
+
+.sidebar {
+  
+}
+
+.sidebar_fixed {
+  position: sticky;
+  top: 80px;
+}
+
+// スマホ版表示
+@media screen and (max-width: 768px){
+  .sidebar{
+    display:none;
+  }
 }

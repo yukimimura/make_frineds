@@ -1,0 +1,17 @@
+<div class="message" id="message-<%= message.id %>">
+  <div class="media mb-3">
+    <% if message.user.image?%>
+      <img width="60" height="60" src="<%= message.user.image.url %>" class="rounded">
+    <% else %>
+      <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded" %>
+    <% end %>
+    <div class="media-body ml-3">
+      <h5 class="mt-0">
+        <%= message.user.email %>
+        <small><%= message.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+      </h5>
+      <%= simple_format(h message.content) %>
+    </div>
+  </div>
+</div>
+

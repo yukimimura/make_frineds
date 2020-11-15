@@ -1,13 +1,15 @@
-<% if flash[:notice] %>
-  <div class="alert alert-success shadow" role="alert">
-    <%= notice %>
-  </div>
-<% end %>
-<% if flash[:alert] %>
-  <div class="alert alert-danger shadow" role="alert">
-    <%= alert %>
-  </div>
-<% end %>
+<div class="container mt-2">
+  <% if flash[:notice] %>
+    <div class="alert alert-success shadow" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger shadow" role="alert">
+      <%= alert %>
+    </div>
+  <% end %>
+</div>
 
 <script>
   $(".alert-success").fadeOut(5000);
