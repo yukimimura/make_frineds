@@ -21,9 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
+  <<: *default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: make-friends_production
-  username: make-friends
-  password: <%= ENV['MAKE-FRIENDS_DATABASE_PASSWORD'] %>
