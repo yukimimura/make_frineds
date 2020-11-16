@@ -1,20 +1,52 @@
-<div class="row">
-  <aside class="col-sm-4">
-    <%= form_with(model: @post, local: true) do |f| %>
-      <div class="form-group">
-        <%= f.text_area :content, class: 'form-control', rows: 5 %>
+<div class="container1">
+  <div class="row">
+    <div class="col-3 sidebar-left">
+      <div class="sidebar_fixed text-center">
+        <button type="button" class="btn btn-lg btn-success mt-3 border col-5" data-toggle="modal" data-target="#exampleModal">
+          Post
+        </button>
       </div>
-      <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-    <% end %>
-  </aside>
+    </div>
+    <div class="col mt-5" id="main">
+      <div class="form1">
+        <%= form_with(model: @post, local: true) do |f| %>     
+          <div class="form-group">
+            <%= f.text_area :content, class: 'form-control', rows: 2, placeholder: 'Post moments...' %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Submit", class: 'btn btn-success col-sm-4 offset-sm-4' %>
+          </div>
+        <% end %>
+      </div>
+      <%= render 'posts/post' %>
+    </div>
+    <div class="col-3 sidebar-right">
+      <div class="sidebar_fixed">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Timeline</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_with(model: @post, local: true) do |f| %>
+          <div class="modal-body">       
+            <div class="form-group">
+              <%= f.text_area :content, class: 'form-control', rows: 3, placeholder: 'Post moments...' %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= f.submit 'Post', class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<% @posts.each do |p| %>
-  <%= p.content %>
-  <%= p.user.name %>
-  <% if current_user == p.user %>
-    <%= link_to "Delete", p, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-  <% end %>
-  <br>
-<% end %>

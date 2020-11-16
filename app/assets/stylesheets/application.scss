@@ -16,11 +16,16 @@
 
 body {
   padding-top: 70px;
-  color: #555555;
+  color: #555555;    
 }
 
 a {
   color: #555555;
+}
+
+.container1 {
+  width: 95%;
+  margin: 0 auto;
 }
 
 // navbar
@@ -48,7 +53,7 @@ nav {
 }
 
 .navbar-light .navbar-nav .nav-item{
-  margin: 0 15px;
+  margin: 0 8px;
 }
 
 // メッセージ一覧
@@ -59,7 +64,7 @@ nav {
 // _footer
 // メッセージ投稿フォーム
 footer {
-  border: solid #EEEEEE;
+  border-top: solid #EEEEEE;
   padding: 1rem;
   margin: 0 auto;
   background-color: white;
@@ -77,8 +82,18 @@ footer {
   
 }
 
-.sidebar {
-  border: solid #EEEEEE;
+.sidebar-left {
+  border-right: solid #EEEEEE;
+  min-height: 600px;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-right {
+  border-left: solid #EEEEEE;
+  min-height: 600px;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar_fixed {
@@ -86,9 +101,37 @@ footer {
   top: 80px;
 }
 
+// posts/index
+.form1 {
+  display:none;
+}
+
 // スマホ版表示
 @media screen and (max-width: 768px){
-  .sidebar{
+  .sidebar-left{
     display:none;
   }
+
+  .sidebar-right{
+    display:none;
+  }
+
+  .form1 {
+    display:block;
+  }
+}
+
+// users/index
+.card-parent {
+  text-align: center;
+}
+
+.card {
+  width: 200px;
+  height: 210px;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0 15px;
+  
 }

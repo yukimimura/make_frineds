@@ -1,0 +1,21 @@
+<% @posts.each do |p| %>
+  <div class="media mb-4">
+    <% if p.user.image? %>
+      <img width="60" height="60" src="<%= p.user.image.url %>" class="rounded ml-2">
+    <% else %>
+      <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded ml-2" %>
+    <% end %>
+    <div class="media-body ml-3">
+      <h5 class="mt-0">
+        <%= p.user.name %>
+        <small class="ml-2"><%= p.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+        <% if current_user == p.user %>
+          <%= link_to p, method: :delete, data: { confirm: "You sure?" } do %>
+            <small class="fas fa-trash-alt float-right"></small>
+          <% end %>
+        <% end %>
+      </h5>
+      <%= simple_format(h p.content) %> 
+    </div>
+  </div>
+<% end %>

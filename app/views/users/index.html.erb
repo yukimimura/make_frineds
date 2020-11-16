@@ -1,13 +1,35 @@
-<% if current_user.language == 'english' %>
-  <% @japanese.each do |j| %>
-    <ul>
-      <li>ユーザー名：<%= link_to j.name, user_path(j) %></li>
-    </ul>
+<div class="card-parent container mt-5">
+  <% if current_user.language == 'english' %>
+    <% @japanese.each do |j| %>
+      <%= link_to user_path(j) do %>
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <% if j.image? %>
+            <img width="100" height="100" src="<%= j.image.url %>" class="rounded mb-1">
+          <% else %>
+            <%= image_tag "/assets/default.jpg", size: '100x100', class: "rounded mb-1" %>
+          <% end %>
+          <h4>
+            <%= j.name %>
+          </h4>
+          <p><%= j.intro %></p>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% @english.each do |e| %>
+      <%= link_to user_path(e) do %>
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <% if e.image? %>
+            <img width="100" height="100" src="<%= e.image.url %>" class="rounded mb-1">
+          <% else %>
+            <%= image_tag "/assets/default.jpg", size: '100x100', class: "rounded mb-1" %>
+          <% end %>
+          <h4>
+            <%= e.name %>
+          </h4>
+          <p><%= e.intro %></p>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
-<% else %>
-  <% @english.each do |e| %>
-    <ul>
-      <li>ユーザー名：<%= link_to e.name,  user_path(e) %></li>
-    </ul>
-  <% end %>
-<% end %>
+</div>

@@ -4,24 +4,22 @@ class PostsController < ApplicationController
 
   def index 
     @post = current_user.posts.build 
-    @posts = Post.all
+    @posts = Post.includes(:user).order(id: "DESC")
   end
 
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:notice] = 'Posted successfully.'
+      @post = Post.includes(:user).order(id: "DESC")
       redirect_back(fallback_location: root_path)
     else
-      @posts = Post.all
-      flash.now[:alert] = 'Failed to post.'
+      @posts = Post.includes(:user).order(id: "DESC")
       render :index
     end
   end
 
   def destroy
     @post.destroy
-    flash[:notice] = 'Deleted post.'
     redirect_back(fallback_location: root_path)
   end
 

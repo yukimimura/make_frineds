@@ -1,7 +1,5 @@
 名前：<%= @user.name %><br>
-ログイン回数：<%= @user.sign_in_count %><br>
-現在ログイン:<%= @user.current_sign_in_at.strftime("%Y-%m-%d %H:%M") %><br>
-最終ログイン：<%= @user.last_sign_in_at.strftime("%Y-%m-%d %H:%M") %><br>
+Login: <%= time_ago_in_words(@user.current_sign_in_at) %> ago
 <%= render 'relationships/follow_button', user: @user %>
 <% if @user.image? %>
   <img width="60" height="60" src="<%= @user.image.url %>" >

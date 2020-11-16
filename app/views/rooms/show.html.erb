@@ -1,34 +1,34 @@
-<div class="row">
-
-	<div class="col-3 sidebar">
-		<div class="sidebar_fixed text-center">
-			<% @entry.each do |e| %>
-				<div class="">
-					<%= link_to user_path(e.user.id) do %>
-						<% if e.user.image? %>
-							<img width="60" height="60" src="<%= e.user.image.url %>" class="rounded">
-						<% else %>
-							<%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded" %>
+<div class="container1">
+	<div class="row">
+		<div class="col-3 sidebar-left">
+			<div class="sidebar_fixed text-center">
+				<h4>Member</h4>
+				<br>
+				<% @entry.each do |e| %>
+					<div class="border-bottom border-success pb-1 col-6 offset-3">
+						<%= link_to user_path(e.user.id) do %>
+							<% if e.user.image? %>
+								<img width="60" height="60" src="<%= e.user.image.url %>" class="rounded">
+							<% else %>
+								<%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded" %>
+							<% end %>
+							<span class="font-weight-bold">
+								<%= e.user.name %>
+							</span>
 						<% end %>
-						<span class="font-weight-bold">
-							<%= e.user.name %>
-						</span>
-					<% end %>
-				</div>
-			<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="col" id="main">
+			<div id="message-container">
+				<%= render @messages %>
+			</div>
+			<%= render 'footer' %>
+		</div>
+		<div class="col-3 sidebar-right">
+			<div class="sidebar_fixed">
+			</div>
 		</div>
 	</div>
-
-	<div class="col" id="main">
-		<div id="message-container">
-			<%= render @messages %>
-		</div>
-		<%= render 'footer' %>
-	</div>
-
-	<div class="col-3 sidebar">
-		<div class="sidebar_fixed">
-		</div>
-	</div>
-
 </div>

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @japanese = User.where(language: 'japanese')
-    @english = User.where(language: 'english')
+    @english = User.where(language: 'english').order(current_sign_in_at: "DESC")
   end
 
   def show 
