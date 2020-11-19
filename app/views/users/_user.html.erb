@@ -1,0 +1,19 @@
+<% users.each do |u| %>
+  <div class="container">
+    <div class="media pt-4 pb-3 border-bottom">
+      <% if u.image? %>
+        <img width="60" height="60" src="<%= u.image.url %>" class="rounded ml-2 mr-3">
+      <% else %>
+        <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded ml-2 mr-3" %>
+      <% end %>
+      <div class="media-body">
+        <h5><%= link_to u.name, u %></h5>
+        <div class="float-right">
+          <%= render 'relationships/follow_button', user: u %>
+        </div>
+        <%= u.intro %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

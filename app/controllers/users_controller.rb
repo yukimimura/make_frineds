@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
     @posts = @user.posts.order(created_at: :desc)
+    @likes = @user.myfavorites
 
     # DM機能
     @currentUserEntry = Entry.where(user_id: current_user.id)
@@ -26,6 +27,16 @@ class UsersController < ApplicationController
         @room = Room.new
         @entry = Entry.new
       end
+    end
+
+    def followings
+      @user = User.find(params[:id])
+      @followings = @user.followings
+    end
+
+    def followers
+      @user = User.find(params[:id])
+      @followers = @user.followers
     end
     
   end

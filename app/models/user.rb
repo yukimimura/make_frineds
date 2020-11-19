@@ -39,4 +39,12 @@ class User < ApplicationRecord
   #DM機能
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+
+  # いいね機能
+  has_many :favorites, dependent: :destroy
+  has_many :myfavorites, through: :favorites, source: :post
+
+  def already_favorited?(post)
+    self.favorites.exists?(post_id: post.id)
+  end
 end

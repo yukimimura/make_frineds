@@ -33,9 +33,9 @@
           <br>
           <span class="font-weight-bold mt-2">Introduction</span>
           <p><%= @user.intro %></p>
-          <p>
-            <span class="font-weight-bold"><%= @user.followings.count %></span> <small>Following </small>
-            <span class="font-weight-bold"><%= @user.followers.count %></span> <small>Followers</small>
+          <p class="ml-1">
+            <a href="<%= followings_user_path(@user) %>"><span class="font-weight-bold"><%= @user.followings.count %></span> <small>Following </small></a>
+            <a href="<%= followers_user_path(@user) %>"><span class="font-weight-bold"><%= @user.followers.count %></span> <small>Followers</small></a>
           </p>
         </div>
       </div>
@@ -48,11 +48,14 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <br>
-          <%= render 'posts/post' %>
+          <br>
+          <%= render 'posts/post', posts: @posts %>
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <br>
+          <%= render 'posts/post', posts: @likes %>
+        </div>
       </div>
 		</div>
 		<div class="col-3 sidebar-right">

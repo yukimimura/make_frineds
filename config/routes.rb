@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount ActionCable.server => '/cable'
   
@@ -14,7 +16,9 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
-  resources :posts
+  resources :posts do
+    resource :favorites, only: [:create, :destroy]
+  end
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :show, :index]
 end
