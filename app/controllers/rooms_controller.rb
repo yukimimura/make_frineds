@@ -8,7 +8,16 @@ class RoomsController < ApplicationController
       myRoomIds << entry.room.id
     end
     @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?',current_user.id)
-    @users = User.order(id: :desc).page(params[:page]).per(10)
+
+    # トークの最新順に表示
+    messageIds = []
+    @anotherEntries.each do |e|
+      room = Room.find(e.room.id)
+      if room.messages.present?
+        messageIds << room.messages.last.id
+      end
+    end
+    @messages = Message.find(messageIds.sort.reverse)
   end
 
   def show

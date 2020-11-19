@@ -1,5 +1,5 @@
 <div class="card-parent container mt-5">
-  <% if current_user.language == 'english' %>
+  <% if current_user.language == 'English' %>
     <% @japanese.each do |j| %>
       <%= link_to user_path(j) do %>
         <div class="card shadow p-3 mb-5 bg-white rounded">

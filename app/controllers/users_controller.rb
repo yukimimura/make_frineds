@@ -2,15 +2,16 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @japanese = User.where(language: 'japanese')
-    @english = User.where(language: 'english').order(current_sign_in_at: "DESC")
+    @japanese = User.where(language: 'Japanese')
+    @english = User.where(language: 'English').order(current_sign_in_at: "DESC")
   end
 
   def show 
     @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
 
     # DM機能
-    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
       @currentUserEntry.each do |cu|

@@ -1,6 +1,39 @@
-<% @anotherEntries.each do |e| %>
-  <p class="is-size-5 has-text-weight-bold"><%= link_to e.user.name, room_path(e.room.id) %></p>
-  <%= link_to room_path(e.room.id) do %>
-    <p>トークルームへ >></p>
-  <% end %>
-<% end %>
+<div class="container1">
+	<div class="row">
+		<div class="col-3 sidebar-left">
+      <div class="sidebar_fixed text-center">
+        <h3 class="mt-5 ">Talk Room</h3>
+			</div>
+		</div>
+		<div class="col mt-5" id="main">
+      <% @messages.each do |m| %>
+        <%
+          a = Room.find(m.room_id)
+          b = a.entries.where('user_id != ?',current_user.id)
+        %>
+        <%= link_to room_path(m.room_id) do %>
+          <div class="media mb-4 mt-3">
+            <% b.each do |c| %>
+              <% if c.user.image? %>
+                <img width="60" height="60" src="<%= c.user.image.url %>" class="rounded">
+              <% else %>
+                <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded" %>
+              <% end %>
+              <div class="media-body ml-4">
+                <h5 class="mt-0">
+                  <%= c.user.name %>
+            <% end %>
+                  <small class="float-right mt-3"><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+                </h5>
+                <%= m.content %>
+              </div>
+          </div>
+        <% end %>
+      <% end %>
+		</div>
+		<div class="col-3 sidebar-right">
+			<div class="sidebar_fixed">
+			</div>
+		</div>
+	</div>
+</div>
