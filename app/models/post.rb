@@ -5,4 +5,7 @@ class Post < ApplicationRecord
 
   # いいね機能
   has_many :favorites, dependent: :destroy
+
+  # コメント機能
+  has_many :comments, dependent: :destroy
 end

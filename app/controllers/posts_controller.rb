@@ -7,6 +7,12 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user).order(id: "DESC")
   end
 
+  def show
+    @comment = Comment.new
+    @post = Post.find(params[:id])
+    @comments = @post.comments.order(id: :desc)
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save

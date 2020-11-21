@@ -47,4 +47,7 @@ class User < ApplicationRecord
   def already_favorited?(post)
     self.favorites.exists?(post_id: post.id)
   end
+
+  # コメント機能
+  has_many :comments, dependent: :destroy
 end
