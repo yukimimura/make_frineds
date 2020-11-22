@@ -4,7 +4,13 @@ class PostsController < ApplicationController
 
   def index 
     @post = current_user.posts.build 
-    @posts = Post.includes(:user).order(id: "DESC")
+    # @post = Post.new でもOK
+    @posts = Post.includes(:user).order(id: :desc)
+  end
+
+  def followings
+    @post = current_user.posts.build 
+    @posts = Post.where(user_id: current_user.following_ids + [current_user.id]).order(id: :desc)
   end
 
   def show

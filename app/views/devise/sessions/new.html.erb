@@ -1,12 +1,15 @@
 <%= render 'layouts/flash_messages'%>
 
-<div class="text-center">
-  <h2>Log in</h2>
-</div>
-
-<div class="container">
+<div class="container mt-5 mb-5">
   <div class="row">
-    <div class="col-md-6 offset-md-3 shadow p-5 mb-5 bg-white rounded">
+  <div class="col text-center mt-5">
+    <h1 class="sign-font1">HelloFriend</h1>
+    <h4 class="sign-font2">
+      Learn a language by chatting with <br>
+      native speakers around the world.
+    </h4>
+  </div>
+    <div class="col-md-6 shadow p-5 mt-3 bg-white rounded">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-group">
           <%= f.label :email, class: 'font-weight-bold' %><br />
@@ -18,7 +21,7 @@
           <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
         </div>
 
-        <div class="row">
+        <div class="row border-bottom pb-3">
           <div class="col-md-8 offset-md-2">
             <div class="btn-lg">
               <%= f.submit "Log in", class: 'font-weight-bold btn btn-success btn-block' %>
@@ -26,6 +29,16 @@
           </div>
         </div>
       <% end %>
+
+      <div class="row mt-3">
+        <div class="col-md-8 offset-md-2">
+          <div class="btn-lg">
+          <%= link_to  new_user_registration_path do%>
+            <button class="font-weight-bold btn btn-outline-danger btn-block">Sign up</button>
+          <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

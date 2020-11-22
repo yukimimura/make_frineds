@@ -18,8 +18,8 @@
           </h5>
           <%= simple_format(h @post.content) %>
           <%= link_to p do %>
-            <i class="far fa-comment" style="color: green;"></i>
-            <span style="color: green;" class="mr-2"><%= @post.comments.count %></span>
+            <i class="far fa-comment"></i>
+            <span class="mr-2"><%= @post.comments.count %></span>
           <% end %> 
           <% if current_user.already_favorited?(@post) %>
             <%= link_to post_favorites_path(@post), method: :delete do %>

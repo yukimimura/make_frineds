@@ -2,17 +2,48 @@
 	<div class="row">
 		<div class="col-3 sidebar-left">
       <div class="sidebar_fixed text-center">
-        <h3 class="mt-5 ">Talk Room</h3>
+        <h3 class="mt-5 font1">Talk Room</h3>
 			</div>
 		</div>
-		<div class="col mt-5" id="main">
+    <div class="col mt-5" id="main">
+      <% unless @messages.present? %>
+        <h4 class="text-center mt-3">
+          Send a message, get a message<br>
+        </h4>
+        <p class="text-center">
+          <small>Direct Messages are private conversations between you and other people.</small>
+        </p>
+        <% @followings.each do |u| %>
+          <div class="container">
+            <div class="media pt-4 pb-3 border-bottom">
+              <% if u.image? %>
+                <img width="60" height="60" src="<%= u.image.url %>" class="rounded ml-2 mr-3">
+              <% else %>
+                <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded ml-2 mr-3" %>
+              <% end %>
+              <div class="media-body">
+                <h5><%= link_to u.name, u %></h5>
+                <div class="float-right">
+                  <%= form_for @room do |f| %>
+                    <%= fields_for @entry do |e| %>
+                      <%= e.hidden_field :user_id, value: u.id %>
+                    <% end %>
+                    <%= f.submit 'Message', class: 'btn btn-outline-dark btn-sm font-weight-bold' %>
+                  <% end %>
+                </div>
+                <%= u.intro %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
       <% @messages.each do |m| %>
         <%
           a = Room.find(m.room_id)
           b = a.entries.where('user_id != ?',current_user.id)
         %>
         <%= link_to room_path(m.room_id) do %>
-          <div class="media mb-4 mt-3">
+          <div class="media pb-3 mt-3 border-bottom">
             <% b.each do |c| %>
               <% if c.user.image? %>
                 <img width="60" height="60" src="<%= c.user.image.url %>" class="rounded">

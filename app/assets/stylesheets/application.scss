@@ -16,7 +16,7 @@
 
 body {
   padding-top: 70px;
-  color: #555555;    
+  color: #555555;
 }
 
 a {
@@ -26,6 +26,24 @@ a {
 .container1 {
   width: 95%;
   margin: 0 auto;
+}
+
+// login
+.sign-font1 {
+  font-size: 50px;
+  color: green;
+  font-weight: 150;
+}
+
+.sign-font2 {
+  font-weight: 150;
+}
+
+// signup
+.font1 {
+  font-size: 35px;
+  color: green;
+  font-weight: 150;
 }
 
 // navbar
@@ -42,8 +60,8 @@ header {
 }
 
 .navbar-brand {
-  font-weight: bold;
-  font-size: 28px;
+  font-size: 30px;
+  font-weight: 150;
 }
 
 .navbar-light .navbar-nav .nav-link{

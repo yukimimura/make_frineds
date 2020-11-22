@@ -18,6 +18,12 @@ class RoomsController < ApplicationController
       end
     end
     @messages = Message.find(messageIds.sort.reverse)
+
+    # DM機能
+    @room = Room.new
+    @entry = Entry.new
+    
+    @followings = current_user.followings
   end
 
   def show
