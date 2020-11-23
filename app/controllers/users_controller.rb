@@ -28,16 +28,34 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+  end
 
-    def followings
-      @user = User.find(params[:id])
-      @followings = @user.followings
-    end
+  def edit
+    @user = current_user
+  end
 
-    def followers
-      @user = User.find(params[:id])
-      @followers = @user.followers
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to @user, notice: "ユーザー情報を更新しました。"
+    else
+      render :edit
     end
-    
+  end
+
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers
+  end
+
+  private
+  
+  def user_params
+    params.require(:user).permit(:name, :email, :image, :age, :intro)
   end
 end

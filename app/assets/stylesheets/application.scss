@@ -19,8 +19,20 @@ body {
   color: #555555;
 }
 
+.top {
+  min-height: 84vh;
+  background-image: url('jojo.svg');
+  background-size:50% 58%;
+  background-position: bottom;
+  background-repeat  : no-repeat;
+}
+
 a {
   color: #555555;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .container1 {
@@ -133,6 +145,10 @@ footer {
 
   .form1 {
     display:block;
+  }
+
+  .top {
+    background-image: none;
   }
 }
 

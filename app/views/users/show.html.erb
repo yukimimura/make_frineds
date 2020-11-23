@@ -1,3 +1,5 @@
+<%= render 'layouts/flash_messages'%>
+
 <div class="container1">
 	<div class="row">
 		<div class="col-3 sidebar-left">
@@ -14,6 +16,11 @@
         <div class="media-body ml-5">
           <h3 class="mt-3 font-weight-bold" ><%= @user.name %></h3> 
           <div class="btn-toolbar mt-3 mb-2" >
+            <% if @user == current_user %>
+              <div class="btn-group mr-1" >
+              <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-outline-dark btn-sm font-weight-bold' %>
+              </div>
+            <% end %>
             <div class="btn-group mr-1" >
               <%= render 'users/message_button' %>
             </div>
@@ -22,7 +29,7 @@
             </div>
           </div>
           <span class="pl-1">
-            <% if @user.sex == "male" %>
+            <% if @user.sex == "Male" %>
               <i class="fas fa-mars pr-1 text-success"></i> <%= @user.age %>
             <% else %>
               <i class="fas fa-venus pr-1 text-danger"></i> <%= @user.age %>

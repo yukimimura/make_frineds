@@ -1,12 +1,37 @@
-<%= render 'layouts/flash_messages'%>
-<div class="home">
-<p class="mt-5">
-<% if user_signed_in? %>
-aaa
-<% else %>
-  bbb
-  
-<% end %>
-</p>
-</div>
+<div class="top">
+  <%= render 'layouts/flash_messages'%>
 
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col text-center mt-5">
+        <h1 class="sign-font1">HelloFriend</h1>
+        <h4 class="sign-font2">
+          Learn a language by chatting with <br>
+          native speakers around the world.
+        </h4>
+      </div>
+      <div class="col-md-6 p-5 mt-3 rounded">
+      <h2 class="text-center sign-font2">Let's start HelloFriend</h2>
+        <div class="row mt-3">
+          <div class="col-md-8 offset-md-2">
+            <div class="btn-lg">
+              <%= link_to  new_user_session_path do%>
+                <button class="font-weight-bold btn btn-success btn-block">
+                  <i class="fas fa-sign-in-alt pr-1"></i> Log in
+                </button>
+              <% end %>
+            </div>
+            <div class="btn-lg">
+              <%= link_to  new_user_registration_path do%>
+                <button class="font-weight-bold btn btn-outline-success btn-block">
+                  <i class="fas fa-globe pr-1"></i> Sign up
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
