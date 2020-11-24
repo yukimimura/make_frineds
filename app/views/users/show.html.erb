@@ -18,13 +18,15 @@
           <div class="btn-toolbar mt-3 mb-2" >
             <% if @user == current_user %>
               <div class="btn-group mr-1" >
-              <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-outline-dark btn-sm font-weight-bold' %>
+              <%= link_to edit_user_path(@user), class: 'btn btn-outline-dark btn-sm font-weight-bold' do %>
+                <i class="fas fa-cog"></i> Edit
+              <% end %>
               </div>
             <% end %>
             <div class="btn-group mr-1" >
               <%= render 'users/message_button' %>
             </div>
-            <div class="btn-group" >
+            <div class="btn-group" id="relationships_buttons_<%= @user.id %>" >
               <%= render 'relationships/follow_button', user: @user %>
             </div>
           </div>

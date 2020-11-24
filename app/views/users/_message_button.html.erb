@@ -1,6 +1,8 @@
 <% unless @user == current_user %>
   <% if @isRoom == true %>
-    <%= link_to 'Message', room_path(@roomId), class: 'btn btn-outline-dark btn-sm font-weight-bold' %>
+    <%= link_to room_path(@roomId), class: 'btn btn-outline-dark btn-sm font-weight-bold' do %>
+      <i class="fas fa-sms"></i> Message
+    <% end %>
   <% else %>
     <%= form_for @room do |f| %>
       <%= fields_for @entry do |e| %>

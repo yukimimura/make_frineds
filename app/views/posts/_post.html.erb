@@ -10,22 +10,16 @@
         <%= link_to p.user.name, p.user %>
         <small class="ml-2"><%= p.created_at.strftime("%Y-%m-%d %H:%M") %></small>
       </h5>
-      <%= simple_format(h p.content) %> 
+      <%= link_to p do %>
+        <%= simple_format(h p.content) %>
+      <% end %>
       <%= link_to p do %>
         <i class="far fa-comment"></i>
         <span class="mr-2"><%= p.comments.count %></span>
       <% end %>
-      <% if current_user.already_favorited?(p) %>
-        <%= link_to post_favorites_path(p), method: :delete do %>
-          <i class="fas fa-heart" style="color: red;"></i>
-        <% end %>
-        <span style="color: red;"><%= p.favorites.count %></span>
-      <% else %>
-        <%= link_to post_favorites_path(p), method: :post do %>
-          <i class="far fa-heart"></i>
-        <% end %>
-        <%= p.favorites.count %>
-      <% end %>
+      <span id="favorites_buttons_<%= p.id %>">
+        <%= render 'favorites/favorite', post: p%>
+      </span>
       <% if current_user == p.user %>
         <%= link_to p, method: :delete, data: { confirm: "You sure?" } do %>
           <i class="far fa-trash-alt ml-2"></i>

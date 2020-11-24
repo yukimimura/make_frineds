@@ -1,13 +1,17 @@
 <% unless current_user == user %>
   <% if current_user.following?(user) %>
-    <%= form_with(model: current_user.relationships.find_by(follow_id: user.id), local: true, method: :delete) do |f| %>
+    <%= form_with(model: current_user.relationships.find_by(follow_id: user.id), method: :delete) do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
-      <%= f.submit 'Following', class: 'btn btn-success btn-sm font-weight-bold' %>
+      <%= button_tag(type: 'submit', class: 'btn btn-success btn-sm font-weight-bold') do %>
+        <i class="fas fa-user-check"></i> Following
+      <% end %>
     <% end %>
   <% else %>
-    <%= form_with(model: current_user.relationships.build, local: true) do |f| %>
+    <%= form_with(model: current_user.relationships.build) do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
-      <%= f.submit 'Follow', class: 'btn btn-outline-success btn-sm font-weight-bold' %>
+      <%= button_tag(type: 'submit', class: 'btn btn-outline-success btn-sm font-weight-bold') do %>
+        <i class="fas fa-user-plus"></i> Follow
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
