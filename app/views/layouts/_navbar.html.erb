@@ -10,7 +10,7 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to 'Timeline', posts_path, class: 'nav-link' %>
+              <%= link_to 'Timeline', posts_path, data: {"turbolinks" => false}, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'Talk', rooms_path, class: 'nav-link' %>
