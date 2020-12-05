@@ -59,3 +59,6 @@ gem 'carrierwave'
 gem 'pry-rails'
 
 gem 'pg', group: :production
+
+gem 'fog-aws'
+gem 'dotenv-rails'

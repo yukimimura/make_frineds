@@ -2,59 +2,62 @@
   <div class="row">
     <div class="col-3 sidebar-left">
       <div class="sidebar_fixed text-center">
+        <h3 class="mt-5 font1">Reply</h3>
       </div>
     </div>
     <div class="col mt-5" id="main">
       <div class="media border-bottom pb-2 pt-2">
         <% if @post.user.image? %>
-          <img width="60" height="60" src="<%= @post.user.image.url %>" class="rounded ml-2">
+        <img width="60" height="60" src="<%= @post.user.image.url %>" class="rounded ml-2">
         <% else %>
-          <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded ml-2" %>
+        <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded ml-2" %>
         <% end %>
         <div class="media-body ml-3">
           <h5 class="mt-0">
             <%= link_to @post.user.name, @post.user %>
             <small class="ml-2"><%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></small>
           </h5>
-          <%= simple_format(h @post.content) %>
+          <%= simple_format (h @post.content) %>
           <%= link_to p do %>
-            <i class="far fa-comment"></i>
-            <span class="mr-2"><%= @post.comments.count %></span>
-          <% end %> 
+          <i class="far fa-comment"></i>
+          <span class="mr-2"><%= @post.comments.count %></span>
+          <% end %>
           <span id="favorites_buttons_<%= @post.id %>">
             <%= render 'favorites/favorite', post: @post %>
           </span>
           <% if current_user == @post.user %>
-            <%= link_to @post, method: :delete, data: { confirm: "You sure?" } do %>
-              <i class="far fa-trash-alt"></i>
-            <% end %>
+          <%= link_to @post, method: :delete, data: { confirm: "You sure?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
           <% end %>
         </div>
       </div>
       <div class="form-group mx-sm-3 mb-2 mt-3">
         <%= form_with(model: @comment, local: true) do |f| %>
           <%= f.hidden_field :post_id, value: @post.id %>
-          <%= f.text_field :content, class: "form-control", placeholder: "Send a reply ..." %>
+          <%= f.text_field :content, class: "form-control", placeholder: "Send a reply ...", id: "form" %>
           <%= f.submit 'send', class: "btn btn-outline-secondary float-right mt-1" %>
         <% end %>
       </div>
       <br>
       <% @comments.each do |c| %>
-        <div class="container">
+        <div class="container border-bottom">
           <div class="media mt-4 mb-2">
             <% if c.user.image? %>
-              <img width="60" height="60" src="<%= c.user.image.url %>" class="rounded ml-2">
+            <img width="60" height="60" src="<%= c.user.image.url %>" class="rounded ml-2">
             <% else %>
-              <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded ml-2" %>
+            <%= image_tag "/assets/default.jpg", size: '60x60', class: "rounded ml-2" %>
             <% end %>
             <div class="media-body ml-3">
-              <p>
-                <%= link_to c.user.name, c.user %>
-                <small class="ml-2"><%= c.created_at.strftime("%Y-%m-%d %H:%M") %></small>
-              </p>
-              <%= c.content %>
+              <%= link_to c.user do %>
+                <span id="name-<%=c.id%>"><%= c.user.name %></span>
+              <% end %>
+              <small class="ml-2"><%= c.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+              <br>
+              <p class="pt-3"><%= c.content %></p>
+              <i class="fas fa-reply" onClick="func(<%= c.id %>)" style="cursor: pointer"></i>
             </div>
-          </div>  
+          </div>
         </div>
       <% end %>
     </div>
@@ -64,3 +67,11 @@
     </div>
   </div>
 </div>
+
+<script>
+  const func = (num) => {
+   let name = "@" + document.getElementById("name-" + num).innerHTML + " ";
+    document.getElementById("form").value = name
+    scrollTo(0, 0);
+  }
+</script>
