@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @japanese = User.where(language: 'Japanese')
+    @japanese = User.where(language: 'Japanese').order(current_sign_in_at: "DESC")
     @english = User.where(language: 'English').order(current_sign_in_at: "DESC")
   end
 
