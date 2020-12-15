@@ -32,3 +32,4 @@ https://make-friends-0605.herokuapp.com/users/sign_in
 <h4>・ログイン・ログアウト機能</h4>
 
 ## ER図
+https://drive.google.com/file/d/1STTBpVfR3UbhlDSU_7R1HSC0QaF04uqM/view?usp=sharing
